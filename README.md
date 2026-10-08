@@ -15,34 +15,34 @@ mkdir telegram-cloud-storage && cd telegram-cloud-storage
 ```
  * Inisialisasi proyek wrangler baru:
 ```bash
-   npx wrangler init
+npx wrangler init
 ```
-   (Pilih JavaScript, dan konfigurasikan file wrangler.toml sesuai kebutuhan).
+Pilih JavaScript, dan konfigurasikan file wrangler.toml sesuai kebutuhan.
 #### Langkah B: Konfigurasi Database D1 & KV Cache
  * Buat database D1 SQLite:
 ```bash
-   npx wrangler d1 create telegram_db
+npx wrangler d1 create telegram_db
 ```
    Salin database_id yang muncul dan masukkan ke wrangler.toml:
 ```toml
-   [[d1_databases]]
+[[d1_databases]]
 binding = "DB"
 database_name = "telegram_db"
 database_id = "MASUKKAN_DATABASE_ID_DISINI"
 ```
  * Buat KV Namespace untuk Cache Download:
 ```bash
-   npx wrangler kv:namespace create "CACHE_KV"
+npx wrangler kv:namespace create "CACHE_KV"
 ```
    Masukkan id KV ke dalam wrangler.toml:
 ```toml
-   [[kv_namespaces]]
+[[kv_namespaces]]
 binding = "CACHE_KV"
 id = "MASUKKAN_KV_ID_DISINI"
 ```
  * Jalankan migrasi struktur database (schema.sql) ke D1 Cloudflare:
 ```bash
-   npx wrangler d1 execute telegram_db --local --file=schema.sql     # Untuk pengujian lokal
+npx wrangler d1 execute telegram_db --local --file=schema.sql     # Untuk pengujian lokal
 npx wrangler d1 execute telegram_db --remote --file=schema.sql    # Untuk produksi di Cloudflare
 ```
 #### Langkah C: Menetapkan Secret Key (Keamanan API)
