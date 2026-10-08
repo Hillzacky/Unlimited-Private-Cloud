@@ -1,0 +1,8 @@
+[[d1_databases]]
+binding = "DB"
+database_name = "telegram_db"
+database_id = "MASUKKAN_DATABASE_ID_DISINI"
+
+[[kv_namespaces]]
+binding = "CACHE_KV"
+id = "MASUKKAN_KV_ID_DISINI"
